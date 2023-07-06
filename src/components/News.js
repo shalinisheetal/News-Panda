@@ -77,18 +77,19 @@ export class News extends Component {
         <div className="row">
           {!this.state.loading &&
             this.state.articles.map((article) => {
-              if (article.description) {
-                return (
-                  <div className="col-md-4" key={article.url}>
-                    <NewsItem
-                      title={article.title}
-                      description={article.description}
-                      newsUrl={article.url}
-                      imageUrl={article.urlToImage}
-                    />
-                  </div>
-                );
-              }
+              return (
+                <div className="col-md-4" key={article.url}>
+                  <NewsItem
+                    title={article.title}
+                    description={article.description}
+                    newsUrl={article.url}
+                    imageUrl={article.urlToImage}
+                    author={article.author}
+                    date={article.publishedAt}
+                    source={article.source.name}
+                  />
+                </div>
+              );
             })}
         </div>
         <div className="container d-flex justify-content-between">
@@ -106,7 +107,7 @@ export class News extends Component {
               Math.ceil(this.state.totalResults / this.props.pageSize)
             }
             type="button"
-            class="btn btn-dark"
+            className="btn btn-dark"
             onClick={this.handleNext}
           >
             Next &rarr;
