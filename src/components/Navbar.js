@@ -2,6 +2,21 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 export class Navbar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchInput: "",
+    };
+  }
+
+  handleInputChange = (e) => {
+    this.setState({ searchInput: e.target.value });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.onSearch(this.state.searchInput);
+  };
   render() {
     return (
       <div>
@@ -44,11 +59,6 @@ export class Navbar extends Component {
                     Entertainment
                   </Link>
                 </li>
-                {/* <li className="nav-item">
-                  <Link className="nav-link" to="/general">
-                    General
-                  </Link>
-                </li> */}
                 <li className="nav-item">
                   <Link className="nav-link" to="/health">
                     Health
@@ -70,6 +80,23 @@ export class Navbar extends Component {
                   </Link>
                 </li>
               </ul>
+              <form
+                className="d-none d-lg-flex"
+                role="search"
+                onSubmit={this.handleSubmit}
+              >
+                <input
+                  className="form-control me-2"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                  value={this.state.searchInput}
+                  onChange={this.handleInputChange}
+                />
+                <button className="btn btn-outline-success" type="submit">
+                  Search
+                </button>
+              </form>
             </div>
           </div>
         </nav>

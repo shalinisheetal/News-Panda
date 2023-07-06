@@ -6,11 +6,21 @@ import News from "./components/News";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 export default class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      searchQuery: "",
+    };
+  }
+
+  handleSearch = (query) => {
+    this.setState({ searchQuery: query });
+  };
   render() {
     return (
       <div>
         <Router>
-          <Navbar />
+          <Navbar onSearch={this.handleSearch} />
           <Routes>
             <Route
               exact
@@ -21,6 +31,7 @@ export default class App extends Component {
                   pageSize={12}
                   country="in"
                   category={"general"}
+                  searchQuery={this.state.searchQuery}
                 />
               }
             />
@@ -33,6 +44,7 @@ export default class App extends Component {
                   pageSize={12}
                   country="in"
                   category={"business"}
+                  searchQuery={this.state.searchQuery}
                 />
               }
             />
@@ -45,6 +57,7 @@ export default class App extends Component {
                   pageSize={12}
                   country="in"
                   category={"entertainment"}
+                  searchQuery={this.state.searchQuery}
                 />
               }
             />
@@ -57,6 +70,7 @@ export default class App extends Component {
                   pageSize={12}
                   country="in"
                   category={"health"}
+                  searchQuery={this.state.searchQuery}
                 />
               }
             />
@@ -69,6 +83,7 @@ export default class App extends Component {
                   pageSize={12}
                   country="in"
                   category={"science"}
+                  searchQuery={this.state.searchQuery}
                 />
               }
             />
@@ -81,6 +96,7 @@ export default class App extends Component {
                   pageSize={12}
                   country="in"
                   category={"sports"}
+                  searchQuery={this.state.searchQuery}
                 />
               }
             />
@@ -93,6 +109,7 @@ export default class App extends Component {
                   pageSize={12}
                   country="in"
                   category={"technology"}
+                  searchQuery={this.state.searchQuery}
                 />
               }
             />
